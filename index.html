@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nabilla Roisha B-day</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-dark">
+    <div class="cake-container position-relative z-3 d-flex justify-content-center align-items-center" id="cakeContainer" style="height: 60vh;">
+            <img src="cake.png" alt="Kue Ulang Tahun" class="cake-image img-fluid" id="birthdayCake">
+        </div>
+    
+    <div class="swiper-section container py-2 d-none" id="swiperSection">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-10">
+                    <h2 class="text-center text-white mb-1 display-5 fw-bold">Feliz Aniversário!!
+                    </h2>
+                    <p class="text-center text-light mb-4 lead">Turning to 21 YO</p>
+                    
+                    <!-- Swiper Container -->
+                    <div class="swiper-container position-relative mb-2">
+                        <div class="swiper-wrapper">
+                            <!-- Slides akan di-generate oleh JavaScript -->
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    <div id="miniMsg" class="position-fixed bottom-0 end-0 m-3" style="z-index:2000;display:none">
+
+  <button id="msgBtn"
+    class="btn btn-primary rounded-circle position-relative"
+    style="width:50px;height:50px">
+
+    💌
+
+    <span id="msgBadge"
+      class="position-absolute top-0 start-100 translate-middle badge bg-danger">
+      3
+    </span>
+
+  </button>
+
+</div>
+
+<div id="msgPopup"
+class="position-fixed bottom-0 end-0 mb-5 me-3 p-3 rounded text-white"
+style="width:240px;background:#1f1f2e;display:none;z-index:2001">
+
+<div class="d-flex justify-content-between mb-2">
+<b>B-day Gift</b>
+<span style="cursor:pointer" onclick="closePopup()">✖</span>
+</div>
+
+<div id="msgList">
+
+<div class="msg-item" onclick="openMsg(1)">💖 Gift 1</div>
+<div class="msg-item" onclick="openMsg(2)">💖 Gift 2</div>
+<div class="msg-item" onclick="openMsg(3)">💖 Gift 3</div>
+
+</div>
+
+<div id="msgContent" style="display:none">
+
+<img id="msgImg"
+style="width:100%;border-radius:8px;margin-bottom:8px">
+
+<div id="msgText"></div>
+
+</div>
+
+
+<button id="backBtn" class="btn btn-sm btn-secondary mt-2" style="display:none"
+onclick="backToList()">Back</button>
+
+</div>
+
+
+    <div class="ucapan-section container py-3 d-none" id="ucapanSection">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-3 col-lg-8">
+                    <div class="card bg-dark text-white border-light">
+                        <div class="card-body p-4 p-md-3">
+                            <div class="text-center mb-4">
+                            </div>
+                            <h3 class="card-title text-center mb-3 fw-bold">Happy B-Day🎂🎉</h3>
+                            
+                            <div class="ucapan-text text-center">
+                                <p class="fs-5 mb-2">Happy Birthday to my girlfriend
+                                the one who stole my heart
+                                and somehow still makes me smile every single day.
+                                I hope this year makes you even more irresistible</p>
+                                <p class="fs-5 mb-2">U are the best girl that i ever met,
+                                the way u smile, the way u talk, everything about u is so perfect
+                                I pray to God to always keep u healthy and happy every day
+                                </p>
+                                <p class="fs-5 mb-2">Thank you for being by my side through thick and thin
+                                I am so grateful to have u in my life
+                                I love u so much baby.
+                                </p>
+                                <p class="fs-4 fw-bold text-warning">
+                            
+                                </p>
+                                
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <audio id="birthdaySong" loop>
+            <source src="song.mp3" type="audio/mpeg">
+        </audio>
+
+        <div id="particles-container" class="position-absolute top-0 start-0 w-100 h-100"></div>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script src="script.js"></script>
+<script>
+let unread = 3;
+
+const msgs = {
+1:{
+    text:"hadiah pertama adalahh ANAK BARUUUU ahahahaa. jadi ak beli ini buat nemenin gimaw takut kesepian dia hehe",
+    img:"hadiah1.jpeg"
+  },
+  2:{
+    text:"IGOODCO IG3110 adalah hadiah ke-dua yang kamu riqwes yak, sebuah kosmetik dengan 67 warna gilaa wkwk",
+    img:"hadiah2.jpeg"
+  },
+  3:{
+    text:"Tangzu Wan er 2 jadi hadiah terakhir, alasanku beli ini karna kamu kan suka musik, aku baca-baca dari forum audio. IEM bisa membuat menikmati lagu sampai tingkat lanjut (bisa denger nafas penyanyinya coi), so ak memutuskan beli ini sebagai support hobi kamu hehe. semoga bisa kepake aja huaaaa.",
+    img:"hadiah3.jpeg"
+  }};
+
+// muncul otomatis setelah 20 detik
+setTimeout(()=>{
+ document.getElementById("miniMsg").style.display="block";
+},2000);
+
+document.getElementById("msgBtn").onclick=function(){
+ togglePopup();
+};
+
+function togglePopup(){
+ const p=document.getElementById("msgPopup");
+ p.style.display = p.style.display=="block"?"none":"block";
+}
+
+function openMsg(id){
+
+ document.getElementById("msgList").style.display="none";
+
+ document.getElementById("msgImg").src = msgs[id].img;
+ document.getElementById("msgText").innerText = msgs[id].text;
+
+ document.getElementById("msgContent").style.display="block";
+ document.getElementById("backBtn").style.display="block";
+
+ if(unread>0){
+   unread--;
+   document.getElementById("msgBadge").innerText=unread;
+   if(unread==0) document.getElementById("msgBadge").style.display="none";
+ }
+
+
+
+ if(unread>0){
+   unread--;
+   document.getElementById("msgBadge").innerText=unread;
+   if(unread==0) document.getElementById("msgBadge").style.display="none";
+ }
+}
+
+function backToList(){
+ document.getElementById("msgContent").style.display="none";
+ document.getElementById("backBtn").style.display="none";
+ document.getElementById("msgList").style.display="block";
+}
+
+function closePopup(){
+ document.getElementById("msgPopup").style.display="none";
+}
+</script>
+
+</body>
+</html>
